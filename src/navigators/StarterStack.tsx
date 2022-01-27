@@ -15,11 +15,7 @@ export function StarterStack() {
         options={{headerShown: false}}
       />
       <Screen name="StarterName" component={StarterName} />
-      <Screen
-        name="StarterDays"
-        component={StarterDays}
-        options={{headerShown: false}}
-      />
+      <Screen name="StarterDays" component={StarterDays} />
     </Navigator>
   );
 }
