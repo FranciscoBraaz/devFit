@@ -1,8 +1,8 @@
 import styled from 'styled-components/native';
 
 interface DefaultButtonProps {
-  width: string;
-  bgColor: string;
+  width?: string;
+  bgColor?: string;
 }
 
 export const DefaultButton = styled.TouchableHighlight<DefaultButtonProps>`

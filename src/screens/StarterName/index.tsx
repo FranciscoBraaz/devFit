@@ -7,6 +7,7 @@ import {changeName} from '../../reducers/userReducer';
 import {Container, HeaderText, NameInput} from './styles';
 
 export function StarterName() {
+  // @ts-ignore
   const {name} = useSelector(state => state.user);
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -14,6 +15,7 @@ export function StarterName() {
   const [nameValue, setNameValue] = useState('');
 
   function handleSubmit() {
+    // @ts-ignore
     if (!route.params || route.params?.name === '') {
       Alert.alert(
         'Prrencha o campo',
