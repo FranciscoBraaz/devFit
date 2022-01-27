@@ -3,6 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import StarterIntro from '../screens/StarterIntro';
 import {StarterName} from '../screens/StarterName';
 import {StarterDays} from '../screens/StarterDays';
+import {StarterLevel} from '../screens/StarterLevel';
 
 const {Navigator, Screen} = createStackNavigator();
 
@@ -16,6 +17,7 @@ export function StarterStack() {
       />
       <Screen name="StarterName" component={StarterName} />
       <Screen name="StarterDays" component={StarterDays} />
+      <Screen name="StarterLevel" component={StarterLevel} />
     </Navigator>
   );
 }
