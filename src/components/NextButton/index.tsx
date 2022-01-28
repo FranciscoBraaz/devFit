@@ -3,8 +3,9 @@ import {NextAction} from './styles';
 
 interface NextButtonProps {
   onPress: () => void;
+  title?: string;
 }
 
-export function NextButton({onPress}: NextButtonProps) {
-  return <NextAction title="Próximo" onPress={onPress} />;
+export function NextButton({onPress, title}: NextButtonProps) {
+  return <NextAction title={!!title ? title : 'Próximo'} onPress={onPress} />;
 }
