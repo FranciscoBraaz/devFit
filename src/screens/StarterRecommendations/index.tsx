@@ -5,6 +5,12 @@ import {useSelector} from 'react-redux';
 import {NextButton} from '../../components/NextButton';
 import {Container, HeaderSubtext, HeaderText, WorkoutList} from './styles';
 import presetWorkouts from '../../presetWorkouts.json';
+import {WorkoutProps} from '../../components/Workout/interfaces';
+import {Workout} from '../../components/Workout';
+
+interface ItemWorkoutProps {
+  item: WorkoutProps;
+}
 
 export function StarterRecommendations() {
   const navigation = useNavigation();
@@ -30,7 +36,7 @@ export function StarterRecommendations() {
         marginRight: 10,
       },
     });
-  }, []);
+  }, [myWorkouts]);
 
   function handleSubmit() {}
 
@@ -42,7 +48,9 @@ export function StarterRecommendations() {
       <HeaderSubtext>Você selecionou {myWorkouts.length} treinos</HeaderSubtext>
       <WorkoutList
         data={presetWorkouts}
-        renderItem={({item}: any) => <Text>{item.name}</Text>}
+        renderItem={({item}: any) => <Workout item={item} />}
+        //@ts-ignore
+        keyExtractor={(item: any) => item.id}
       />
     </Container>
   );
