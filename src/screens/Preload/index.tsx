@@ -5,6 +5,7 @@ import {Text, View} from 'react-native';
 
 export default function Preload() {
   const navigation = useNavigation();
+  //@ts-ignore
   const state = useSelector(state => state.user);
 
   navigation.reset({
