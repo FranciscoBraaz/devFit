@@ -6,6 +6,7 @@ import React from 'react';
 import {CustomTabBar} from '../components/CustomTabBar';
 import {Home} from '../screens/Home';
 import {TempScreen} from '../screens/TempScreen';
+import {HomeStack} from './HomeStack';
 
 const {Navigator, Screen} = createBottomTabNavigator();
 
@@ -35,7 +36,7 @@ export function AppTab() {
       tabBar={(props: BottomTabBarProps) => (
         <CustomTabBar {...props} items={tabs} />
       )}>
-      <Screen name="HomeTab" component={Home} />
+      <Screen name="HomeTab" component={HomeStack} />
       <Screen name="TempScreen1" component={TempScreen} />
       <Screen name="TempScreen2" component={TempScreen} />
     </Navigator>
