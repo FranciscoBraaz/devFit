@@ -8,21 +8,21 @@ export default function Preload() {
   //@ts-ignore
   const state = useSelector(state => state.user);
 
-  navigation.reset({
-    index: 0,
-    routes: [{name: 'StarterStack'}],
-  });
+  // navigation.reset({
+  //   index: 0,
+  //   routes: [{name: 'StarterStack'}],
+  // });
 
-  // if (!state.name) {
-  //   navigation.reset({
-  //     index: 0,
-  //     routes: [{name: 'StarterStack'}],
-  //   });
-  // } else {
-  //   navigation.reset({
-  //     index: 0,
-  //     routes: [{name: 'AppTab'}],
-  //   });
-  // }
+  if (!state.name) {
+    navigation.reset({
+      index: 0,
+      routes: [{name: 'StarterStack'}],
+    });
+  } else {
+    navigation.reset({
+      index: 0,
+      routes: [{name: 'AppTab'}],
+    });
+  }
   return null;
 }

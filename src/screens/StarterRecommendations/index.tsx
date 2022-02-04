@@ -79,8 +79,8 @@ export function StarterRecommendations() {
       <HeaderSubtext>Você selecionou {renderText()}</HeaderSubtext>
       <WorkoutList
         data={presetWorkouts}
-        renderItem={({item}: any) => (
-          <Workout item={item} modifyWorkouts={modifyWorkouts} />
+        renderItem={({item, index}: any) => (
+          <Workout key={index} item={item} modifyWorkouts={modifyWorkouts} />
         )}
         //@ts-ignore
         keyExtractor={(item: any) => item.id}
