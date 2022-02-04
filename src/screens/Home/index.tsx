@@ -2,6 +2,8 @@ import {useNavigation} from '@react-navigation/native';
 import React, {useLayoutEffect} from 'react';
 import {Text, View} from 'react-native';
 import {ConfigButton} from '../../components/ConfigButton';
+import {Legend} from '../../components/Legend';
+import {Container} from './styles';
 
 export function Home() {
   const navigation = useNavigation();
@@ -17,8 +19,8 @@ export function Home() {
   }, []);
 
   return (
-    <View>
-      <Text>HomeTab</Text>
-    </View>
+    <Container>
+      <Legend />
+    </Container>
   );
 }
