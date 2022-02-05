@@ -49,10 +49,24 @@ export function HomeMonthScroll({
     changeSelectedMonth(chosenMonth);
   }, [chosenMonth]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      scrollToMonth(selectedMonth);
+    }, 10);
+  }, [selectedMonth]);
+
   function handleScrollEnd(event: NativeSyntheticEvent<NativeScrollEvent>) {
     let posX = event.nativeEvent.contentOffset.x;
     let targetMonth = Math.round(posX / monthButtonWidth);
     setChosenMonth(targetMonth);
+  }
+
+  function scrollToMonth(month: number) {
+    const posX = month * monthButtonWidth;
+    if (monthRef.current) {
+      //@ts-ignore
+      monthRef.current.scrollTo({x: posX, y: 0, animated: true});
+    }
   }
 
   return (
@@ -68,9 +82,22 @@ export function HomeMonthScroll({
         paddingRight: monthButtonWidth,
       }}
       onMomentumScrollEnd={handleScrollEnd}>
-      {months.map(month => (
-        <MonthButton key={month} width={monthButtonWidth}>
-          <MonthItem>
+      {months.map((month, index) => (
+        <MonthButton
+          underlayColor="transparent"
+          key={month}
+          width={monthButtonWidth}
+          onPress={() => setChosenMonth(index)}>
+          <MonthItem
+            style={
+              index === selectedMonth
+                ? {
+                    backgroundColor: '#CCC',
+                    width: '100%',
+                    height: 40,
+                  }
+                : {}
+            }>
             <MonthText>{month}</MonthText>
           </MonthItem>
         </MonthButton>
