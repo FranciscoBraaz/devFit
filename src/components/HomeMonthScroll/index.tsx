@@ -1,10 +1,24 @@
-import React, {ReactElement, Ref, RefObject, useRef} from 'react';
-import {Dimensions, ScrollView, ScrollViewProps} from 'react-native';
+import React, {
+  ReactElement,
+  Ref,
+  RefObject,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+import {
+  Alert,
+  Dimensions,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
+  ScrollView,
+  ScrollViewProps,
+} from 'react-native';
 import {MonthScroll, MonthButton, MonthItem, MonthText} from './styles';
 
 interface HomeMonthScrollProps {
   selectedMonth: number;
-  changeSelectedMonth: () => void;
+  changeSelectedMonth: (month: number) => void;
 }
 
 const months = [
@@ -15,6 +29,7 @@ const months = [
   'Maio',
   'Junho',
   'Julho',
+  'Agosto',
   'Setembro',
   'Outubro',
   'Novembro',
@@ -28,6 +43,17 @@ export function HomeMonthScroll({
   changeSelectedMonth,
 }: HomeMonthScrollProps) {
   const monthRef = useRef();
+  const [chosenMonth, setChosenMonth] = useState(selectedMonth);
+
+  useEffect(() => {
+    changeSelectedMonth(chosenMonth);
+  }, [chosenMonth]);
+
+  function handleScrollEnd(event: NativeSyntheticEvent<NativeScrollEvent>) {
+    let posX = event.nativeEvent.contentOffset.x;
+    let targetMonth = Math.round(posX / monthButtonWidth);
+    setChosenMonth(targetMonth);
+  }
 
   return (
     <MonthScroll
@@ -35,7 +61,13 @@ export function HomeMonthScroll({
       ref={monthRef}
       horizontal={true}
       decelerationRate="fast"
-      showsHorizontalScrollIndicator={false}>
+      showsHorizontalScrollIndicator={false}
+      snapToInterval={monthButtonWidth}
+      contentContainerStyle={{
+        paddingLeft: monthButtonWidth,
+        paddingRight: monthButtonWidth,
+      }}
+      onMomentumScrollEnd={handleScrollEnd}>
       {months.map(month => (
         <MonthButton key={month} width={monthButtonWidth}>
           <MonthItem>

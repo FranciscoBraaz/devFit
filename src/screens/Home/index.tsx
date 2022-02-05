@@ -21,7 +21,11 @@ export function Home() {
     });
   }, []);
 
-  function changeSelectedMonth() {}
+  function changeSelectedMonth(month: number) {
+    setSelectedMonth(month);
+  }
+
+  console.log(selectedMonth);
   return (
     <Container>
       <HomeMonthScroll
