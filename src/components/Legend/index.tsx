@@ -14,7 +14,7 @@ export function Legend() {
     <LegendContainer>
       <LegendText>Legenda:</LegendText>
       {legends.map(legend => (
-        <LegendItem>
+        <LegendItem key={legend.title}>
           <LegendBox
             style={{
               backgroundColor: legend.bgColor,

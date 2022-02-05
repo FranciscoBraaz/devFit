@@ -26,8 +26,8 @@ interface CustomTabBarProps {
 export function CustomTabBar({navigation, items}: CustomTabBarProps) {
   return (
     <TabBarArea>
-      {items.map(item => (
-        <TabBarItem>
+      {items.map((item, index) => (
+        <TabBarItem key={index}>
           {item.type === 'regular' ? (
             <TabBarRegular
               underlayColor="transparent"

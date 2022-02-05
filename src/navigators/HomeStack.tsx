@@ -6,7 +6,7 @@ const {Navigator, Screen} = createStackNavigator();
 
 export function HomeStack() {
   return (
-    <Navigator>
+    <Navigator screenOptions={{cardStyle: {backgroundColor: '#fff'}}}>
       <Screen name="Home" component={Home} />
     </Navigator>
   );
