@@ -15,7 +15,7 @@ import {
   ScrollViewProps,
 } from 'react-native';
 import {Day} from '../Day';
-import {DaysScroll, DayButton, DayItem, DayText} from './styles';
+import {DaysScroll} from './styles';
 
 interface HomeDaysScrollProps {
   selectedMonth: number;
@@ -100,6 +100,7 @@ export function HomeDaysScroll({
           month={selectedMonth}
           dailyProgress={dailyProgress}
           workoutDays={workoutDays}
+          width={dayButtonWidth}
           onPress={() => scrollToDay(day)}
         />
       ))}
