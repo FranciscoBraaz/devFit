@@ -14,6 +14,7 @@ import {
   ScrollView,
   ScrollViewProps,
 } from 'react-native';
+import {Day} from '../Day';
 import {DaysScroll, DayButton, DayItem, DayText} from './styles';
 
 interface HomeDaysScrollProps {
@@ -24,40 +25,28 @@ interface HomeDaysScrollProps {
   workoutDays: [];
 }
 
-const months = [
-  'Janeiro',
-  'Fevereiro',
-  'Março',
-  'Abril',
-  'Maio',
-  'Junho',
-  'Julho',
-  'Agosto',
-  'Setembro',
-  'Outubro',
-  'Novembro',
-  'Dezembro',
-];
 const widthScreen = Math.round(Dimensions.get('window').width);
 const dayButtonWidth = Math.round(widthScreen / 9);
 const offsetWidth = Math.round((widthScreen - dayButtonWidth) / 2);
 
 export function HomeDaysScroll({
-  selectedMonth,
   selectedDay,
   changeSelectedDay,
-  dailyProgress,
   workoutDays,
+  dailyProgress,
+  selectedMonth,
 }: HomeDaysScrollProps) {
   const dayRef = useRef();
   const [chosenDay, setChosenDay] = useState(selectedMonth);
   const [firstRender, setFirstRender] = useState(true);
 
   let days = [];
-  let daysInMonth = Number(
-    new Date(new Date().getFullYear(), selectedMonth + 1, 0),
-  );
-  for (let i = 1; i < daysInMonth; i++) {
+  let daysInMonth: any = new Date(
+    new Date().getFullYear(),
+    selectedMonth + 1,
+    0,
+  ).getDate();
+  for (let i = 1; i <= daysInMonth; i++) {
     days.push(i);
   }
 
@@ -94,36 +83,25 @@ export function HomeDaysScroll({
   return (
     <DaysScroll
       //@ts-ignore
-      ref={monthRef}
+      ref={dayRef}
       horizontal={true}
       decelerationRate="fast"
       showsHorizontalScrollIndicator={false}
       snapToInterval={dayButtonWidth}
-      // snapToAlignment="start"
       contentContainerStyle={{
         paddingLeft: offsetWidth,
         paddingRight: offsetWidth,
       }}
       onMomentumScrollEnd={handleScrollEnd}>
-      {months.map((month, index) => (
-        <DayButton
-          underlayColor="transparent"
-          key={month}
-          width={dayButtonWidth}
-          onPress={() => setChosenDay(index)}>
-          <DayItem
-            style={
-              index === selectedMonth
-                ? {
-                    backgroundColor: '#CCC',
-                    width: '100%',
-                    height: 40,
-                  }
-                : {}
-            }>
-            <DayText>{month}</DayText>
-          </DayItem>
-        </DayButton>
+      {days.map((day, index) => (
+        <Day
+          key={index}
+          day={day}
+          month={selectedMonth}
+          dailyProgress={dailyProgress}
+          workoutDays={workoutDays}
+          onPress={() => scrollToDay(day)}
+        />
       ))}
     </DaysScroll>
   );

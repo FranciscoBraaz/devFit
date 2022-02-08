@@ -44,21 +44,16 @@ export function HomeMonthScroll({
 }: HomeMonthScrollProps) {
   const monthRef = useRef();
   const [chosenMonth, setChosenMonth] = useState(selectedMonth);
-  const [firstRender, setFirstRender] = useState(true);
 
   useEffect(() => {
     changeSelectedMonth(chosenMonth);
   }, [chosenMonth]);
 
   useEffect(() => {
-    if (firstRender) {
-      setTimeout(() => {
-        scrollToMonth(selectedMonth);
-      }, 10);
-
-      setFirstRender(false);
-    }
-  }, [selectedMonth, firstRender]);
+    setTimeout(() => {
+      scrollToMonth(selectedMonth);
+    }, 10);
+  }, [selectedMonth]);
 
   function handleScrollEnd(event: NativeSyntheticEvent<NativeScrollEvent>) {
     let posX = event.nativeEvent.contentOffset.x;
