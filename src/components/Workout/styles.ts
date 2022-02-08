@@ -15,6 +15,7 @@ export const WorkoutInfo = styled.View`
 export const WorkoutTitle = styled.Text`
   margin: 10px;
   font-size: 17px;
+  color: #333;
 `;
 
 export const MuscleScroll = styled.ScrollView`

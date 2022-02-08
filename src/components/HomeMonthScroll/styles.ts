@@ -21,4 +21,6 @@ export const MonthItem = styled.View`
   align-items: center;
   justify-content: center;
 `;
-export const MonthText = styled.Text``;
+export const MonthText = styled.Text`
+  color: #000;
+`;

@@ -17,4 +17,6 @@ export const DayItem = styled.View`
   align-items: center;
   justify-content: center;
 `;
-export const DayText = styled.Text``;
+export const DayText = styled.Text`
+  color: #000;
+`;

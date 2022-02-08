@@ -20,7 +20,7 @@ import {DaysScroll} from './styles';
 interface HomeDaysScrollProps {
   selectedMonth: number;
   selectedDay: number;
-  changeSelectedDay: (month: number) => void;
+  changeSelectedDay: (day: number) => void;
   dailyProgress: string[];
   workoutDays: [];
 }
@@ -37,8 +37,7 @@ export function HomeDaysScroll({
   selectedMonth,
 }: HomeDaysScrollProps) {
   const dayRef = useRef();
-  const [chosenDay, setChosenDay] = useState(selectedMonth);
-  const [firstRender, setFirstRender] = useState(true);
+  const [chosenDay, setChosenDay] = useState(selectedDay);
 
   let days = [];
   let daysInMonth: any = new Date(
@@ -56,24 +55,24 @@ export function HomeDaysScroll({
 
   useEffect(() => {
     setTimeout(() => {
-      if (selectedMonth === new Date().getMonth()) {
+      if (selectedMonth == new Date().getMonth()) {
         scrollToDay(new Date().getDate());
+        setChosenDay(new Date().getDate());
       } else {
         scrollToDay(1);
+        setChosenDay(1);
       }
     }, 10);
-
-    setFirstRender(false);
   }, [selectedMonth]);
 
   function handleScrollEnd(event: NativeSyntheticEvent<NativeScrollEvent>) {
     let posX = event.nativeEvent.contentOffset.x;
-    let targetDay = Math.round(posX / dayButtonWidth);
+    let targetDay = Math.round(posX / dayButtonWidth) + 1;
     setChosenDay(targetDay);
   }
 
   function scrollToDay(day: number) {
-    const posX = day * dayButtonWidth;
+    const posX = (day - 1) * dayButtonWidth;
     if (dayRef.current) {
       //@ts-ignore
       dayRef.current.scrollTo({x: posX, y: 0, animated: true});
@@ -101,7 +100,10 @@ export function HomeDaysScroll({
           dailyProgress={dailyProgress}
           workoutDays={workoutDays}
           width={dayButtonWidth}
-          onPress={() => scrollToDay(day)}
+          onClickedDay={() => {
+            scrollToDay(day);
+            setChosenDay(day);
+          }}
         />
       ))}
     </DaysScroll>

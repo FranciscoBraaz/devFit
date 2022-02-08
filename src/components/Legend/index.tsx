@@ -5,8 +5,8 @@ const legends = [
   {title: 'Hoje', bgColor: '#B5EEFF'},
   {title: 'Treino feito', bgColor: '#B5FFB8'},
   {title: 'Treino perdido', bgColor: '#FFB5B5'},
-  {title: 'Dia de descanso', bgColor: '#F4F4F4', opacity: 0.5},
-  {title: 'Dia futuro', bgColor: '#B5EEFF'},
+  {title: 'Dia de descanso', bgColor: '#F4F4F4', opacity: 0.3},
+  {title: 'Dia futuro', bgColor: '#F4F4F4'},
 ];
 
 export function Legend() {

@@ -34,7 +34,7 @@ export function CustomTabBar({navigation, items}: CustomTabBarProps) {
               onPress={() => navigation.navigate(item.route)}>
               <>
                 <TabImage source={item.icon} />
-                <Text>{item.text}</Text>
+                <Text style={{color: '#333'}}>{item.text}</Text>
               </>
             </TabBarRegular>
           ) : (

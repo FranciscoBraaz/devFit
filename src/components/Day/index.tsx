@@ -8,7 +8,7 @@ interface DayProps {
   dailyProgress: string[];
   workoutDays: number[];
   width: number;
-  onPress: () => void;
+  onClickedDay: () => void;
 }
 
 export function Day({
@@ -17,7 +17,7 @@ export function Day({
   dailyProgress,
   workoutDays,
   width,
-  onPress,
+  onClickedDay,
 }: DayProps) {
   let bgColor = '#F4F4F4';
   let opacity = 1;
@@ -45,7 +45,7 @@ export function Day({
       }
     }
   } else {
-    opacity = 0.5;
+    opacity = 0.3;
   }
 
   if (today.getTime() === thisDate.getTime()) {
@@ -54,7 +54,7 @@ export function Day({
   }
 
   return (
-    <DayButton width={width}>
+    <DayButton width={width} onPress={onClickedDay} underlayColor="transparent">
       <DayItem style={{backgroundColor: bgColor, opacity}}>
         <DayText>{day}</DayText>
       </DayItem>

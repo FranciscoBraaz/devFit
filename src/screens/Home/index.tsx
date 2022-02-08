@@ -5,6 +5,7 @@ import {ConfigButton} from '../../components/ConfigButton';
 import {HomeDaysScroll} from '../../components/HomeDaysScroll';
 import {HomeMonthScroll} from '../../components/HomeMonthScroll';
 import {Legend} from '../../components/Legend';
+import {LegendText} from '../../components/Legend/styles';
 import {Container} from './styles';
 
 export function Home() {
@@ -46,6 +47,8 @@ export function Home() {
         dailyProgress={dailyProgress}
         workoutDays={workoutDays}
       />
+      <LegendText>Mês: {selectedMonth + 1}</LegendText>
+      <LegendText>Dia: {selectedDay}</LegendText>
       <Legend />
     </Container>
   );

@@ -83,7 +83,9 @@ export function StarterLevel() {
             style={{marginBottom: 20}}
             underlayColor="#ccc"
             bgColor={level === myLevel ? '#A5E8BC' : '#eee'}>
-            <Text style={{fontWeight: 'bold', fontSize: 16}}>{myLevel}</Text>
+            <Text style={{fontWeight: 'bold', fontSize: 16, color: '#000'}}>
+              {myLevel}
+            </Text>
           </DefaultButton>
         ))}
       </LevelArea>

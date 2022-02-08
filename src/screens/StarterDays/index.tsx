@@ -85,7 +85,7 @@ export function StarterDays() {
             style={{marginBottom: 20}}
             underlayColor="#ccc"
             bgColor={workoutDays.includes(index) ? '#A5E8BC' : '#eee'}>
-            <Text style={{fontWeight: 'bold'}}>{day}</Text>
+            <Text style={{fontWeight: 'bold', color: '#000'}}>{day}</Text>
           </DefaultButton>
         ))}
       </DaysArea>

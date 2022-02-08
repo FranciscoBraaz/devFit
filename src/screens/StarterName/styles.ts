@@ -20,4 +20,5 @@ export const NameInput = styled.TextInput`
   border-radius: 10px;
   font-size: 16px;
   padding: 10px;
+  color: #000;
 `;
