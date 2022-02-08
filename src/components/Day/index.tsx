@@ -31,6 +31,19 @@ export function Day({
   let thisDate = new Date(today.getFullYear(), month, day);
 
   if (workoutDays.includes(thisDate.getDay())) {
+    if (thisDate.getTime() < today.getTime()) {
+      let thisYear = thisDate.getFullYear();
+      let thisMonth = String(thisDate.getMonth() + 1).padStart(2, '0');
+      let thisDay = String(thisDate.getDate()).padStart(2, '0');
+
+      let dateFormated = `${thisYear}-${thisMonth}-${thisDay}`;
+
+      if (dailyProgress.includes(dateFormated)) {
+        bgColor = '#B5FFB8'; //TREINOU
+      } else {
+        bgColor = '#FFB5B5'; // NÃO TREINOU
+      }
+    }
   } else {
     opacity = 0.5;
   }
