@@ -16,5 +16,24 @@ export const BalloonArea = styled.View`
   padding: 20px;
   background-color: #ededed;
   border-radius: 10px;
-  min-height: 100px;
+`;
+
+export const BalloonBigText = styled.Text`
+  font-size: 15px;
+  align-self: center;
+`;
+
+export const ButtonText = styled.Text`
+  color: #fff;
+  font-weight: bold;
+`;
+
+export const BallonSmallText = styled.Text`
+  font-size: 13px;
+  align-self: center;
+  margin-top: 10px;
+`;
+
+export const Strong = styled.Text`
+  font-weight: bold;
 `;
