@@ -3,9 +3,11 @@ import React, {useLayoutEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
 import {ConfigButton} from '../../components/ConfigButton';
 import {HomeDaysScroll} from '../../components/HomeDaysScroll';
+import {HomeDayStatus} from '../../components/HomeDayStatus';
 import {HomeMonthScroll} from '../../components/HomeMonthScroll';
 import {Legend} from '../../components/Legend';
 import {LegendText} from '../../components/Legend/styles';
+import {addProgress, removeProgress} from '../../reducers/userReducer';
 import {Container} from './styles';
 
 export function Home() {
@@ -46,6 +48,16 @@ export function Home() {
         changeSelectedDay={changeSelectedDay}
         dailyProgress={dailyProgress}
         workoutDays={workoutDays}
+      />
+      <HomeDayStatus
+        selectedMonth={selectedMonth}
+        selectedDay={selectedDay}
+        changeSelectedDay={changeSelectedDay}
+        dailyProgress={dailyProgress}
+        workoutDays={workoutDays}
+        addProgress={addProgress}
+        removeProgress={removeProgress}
+        goToWorkout={() => navigation.navigate('WorkoutStack')}
       />
       <LegendText>Mês: {selectedMonth + 1}</LegendText>
       <LegendText>Dia: {selectedDay}</LegendText>

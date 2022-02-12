@@ -4,6 +4,8 @@ const CHANGE_NAME = 'userReducer/changeName';
 const CHANGE_WORKOUT_DAYS = 'userReducer/changeWorkoutDays';
 const CHANGE_LEVEL = 'userReducer/changeLevel';
 const CHANGE_MY_WORKOUTS = 'userReducer/changeMyWorkouts';
+const ADD_PROGRESS = 'userReducer/addProgress';
+const REMOVE_PROGRESS = 'userReducer/removeProgress';
 
 export const changeName = (name: string) => ({
   type: CHANGE_NAME,
@@ -23,6 +25,15 @@ export const changeLevel = (level: string) => ({
 export const changeMyWorkouts = (workouts: WorkoutProps[]) => ({
   type: CHANGE_MY_WORKOUTS,
   payload: workouts,
+});
+
+export const addProgress = (dateInfo: string) => ({
+  type: ADD_PROGRESS,
+  payload: dateInfo,
+});
+
+export const removeProgress = (dateInfo: string) => ({
+  type: REMOVE_PROGRESS,
 });
 
 const initialState = {
@@ -49,6 +60,26 @@ const reducer = (state = initialState, action: Action) => {
       return {...state, level: action.payload};
     case CHANGE_MY_WORKOUTS:
       return {...state, myWorkouts: action.payload};
+    case ADD_PROGRESS: {
+      let oldDailyProgress = [...state.dailyProgress];
+
+      if (oldDailyProgress.includes(action.payload)) {
+        return state;
+      }
+
+      return {
+        ...state,
+        dailyProgress: [...state.dailyProgress, action.payload],
+      };
+    }
+    case REMOVE_PROGRESS: {
+      let oldDailyProgress = [...state.dailyProgress];
+      let newDailyProgress = oldDailyProgress.filter(
+        (dateOfDay: string) => dateOfDay !== action.payload,
+      );
+
+      return {...state, dailyProgress: newDailyProgress};
+    }
     default:
       return state;
   }

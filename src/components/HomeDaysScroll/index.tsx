@@ -1,18 +1,8 @@
-import React, {
-  ReactElement,
-  Ref,
-  RefObject,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
-  Alert,
   Dimensions,
   NativeScrollEvent,
   NativeSyntheticEvent,
-  ScrollView,
-  ScrollViewProps,
 } from 'react-native';
 import {Day} from '../Day';
 import {DaysScroll} from './styles';
