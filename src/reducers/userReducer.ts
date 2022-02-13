@@ -34,6 +34,7 @@ export const addProgress = (dateInfo: string) => ({
 
 export const removeProgress = (dateInfo: string) => ({
   type: REMOVE_PROGRESS,
+  payload: dateInfo,
 });
 
 const initialState = {
@@ -61,15 +62,15 @@ const reducer = (state = initialState, action: Action) => {
     case CHANGE_MY_WORKOUTS:
       return {...state, myWorkouts: action.payload};
     case ADD_PROGRESS: {
-      let oldDailyProgress = [...state.dailyProgress];
+      let newDailyProgress = [...state.dailyProgress];
 
-      if (oldDailyProgress.includes(action.payload)) {
-        return state;
+      if (!newDailyProgress.includes(action.payload)) {
+        newDailyProgress.push(action.payload);
       }
 
       return {
         ...state,
-        dailyProgress: [...state.dailyProgress, action.payload],
+        dailyProgress: newDailyProgress,
       };
     }
     case REMOVE_PROGRESS: {

@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Text} from 'react-native';
+import {useDispatch} from 'react-redux';
 import {DefaultButton} from '../../styles/global';
 import {
   BallonSmallText,
@@ -32,6 +33,7 @@ export function HomeDayStatus({
   goToWorkout,
 }: HomeDayStatusProps) {
   const [timeLeft, setTimeLeft] = useState('');
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const timerFunction = () => {
@@ -105,7 +107,7 @@ export function HomeDayStatus({
               <Strong>Parabéns</Strong>, você treinou!
             </BalloonBigText>
             <DefaultButton
-              onPress={() => removeProgress(dateFormated)}
+              onPress={() => dispatch(removeProgress(dateFormated))}
               bgColor="#4ac34e"
               underlayColor="#4ac34e"
               style={{marginTop: 20}}>
@@ -119,7 +121,7 @@ export function HomeDayStatus({
               Opa, você <Strong>não treinou</Strong> neste dia!
             </BalloonBigText>
             <DefaultButton
-              onPress={() => addProgress(dateFormated)}
+              onPress={() => dispatch(addProgress(dateFormated))}
               bgColor="#4ac34e"
               underlayColor="#4ac34e"
               style={{marginTop: 20}}>
