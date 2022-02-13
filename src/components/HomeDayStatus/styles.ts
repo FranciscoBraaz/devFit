@@ -21,6 +21,7 @@ export const BalloonArea = styled.View`
 export const BalloonBigText = styled.Text`
   font-size: 15px;
   align-self: center;
+  color: #000;
 `;
 
 export const ButtonText = styled.Text`
@@ -32,6 +33,7 @@ export const BallonSmallText = styled.Text`
   font-size: 13px;
   align-self: center;
   margin-top: 10px;
+  color: #000;
 `;
 
 export const Strong = styled.Text`

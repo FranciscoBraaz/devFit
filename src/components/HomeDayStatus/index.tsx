@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Text} from 'react-native';
 import {DefaultButton} from '../../styles/global';
 import {
@@ -31,6 +31,36 @@ export function HomeDayStatus({
   removeProgress,
   goToWorkout,
 }: HomeDayStatusProps) {
+  const [timeLeft, setTimeLeft] = useState('');
+
+  useEffect(() => {
+    const timerFunction = () => {
+      let now = Date.now();
+      let endToday = new Date();
+      endToday.setHours(23);
+      endToday.setMinutes(59);
+      endToday.setSeconds(59);
+      let endTodayMilliSeconds = endToday.getTime();
+      let diff = endTodayMilliSeconds - now;
+
+      let h: number | string = Math.floor(diff / (1000 * 60 * 60));
+      let m: number | string = Math.floor(diff / (1000 * 60) - h * 60);
+      let s: number | string = Math.floor(diff / 1000 - m * 60 - h * 60 * 60);
+
+      h = h < 10 ? '0' + h : h;
+      m = m < 10 ? '0' + m : m;
+      s = s < 10 ? '0' + s : s;
+
+      setTimeLeft(`${h}h ${m}m ${s}s`);
+    };
+
+    let timer = setInterval(timerFunction, 1000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
   let today = new Date();
   today.setHours(0);
   today.setMinutes(0);
@@ -103,7 +133,7 @@ export function HomeDayStatus({
             <BalloonBigText>
               <Strong>HOJE</Strong> TEM TREINO 🚀
             </BalloonBigText>
-            <BallonSmallText>Você tem 15 minutos para treinar</BallonSmallText>
+            <BallonSmallText>Você tem {timeLeft} para treinar</BallonSmallText>
             <DefaultButton
               onPress={goToWorkout}
               bgColor="#4ac34e"
