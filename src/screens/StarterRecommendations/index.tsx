@@ -7,7 +7,7 @@ import {Container, HeaderSubtext, HeaderText, WorkoutList} from './styles';
 import presetWorkouts from '../../presetWorkouts.json';
 import {WorkoutProps} from '../../components/Workout/interfaces';
 import {Workout} from '../../components/Workout';
-import {changeMyWorkouts} from '../../reducers/userReducer';
+import {addWorkout, removeWorkout} from '../../reducers/userReducer';
 
 interface ItemWorkoutProps {
   item: WorkoutProps;
@@ -47,21 +47,34 @@ export function StarterRecommendations() {
     });
   }
 
-  function modifyWorkouts(workout: WorkoutProps) {
-    let newMyWorkouts = [];
+  function handleAddWorkout(workout: WorkoutProps) {
     let index = myWorkouts.findIndex(
       (myWorkout: WorkoutProps) => myWorkout.id === workout.id,
     );
     if (index < 0) {
-      newMyWorkouts = [...myWorkouts, workout];
-    } else {
-      newMyWorkouts = myWorkouts.filter(
-        (myWorkout: WorkoutProps) => myWorkout.id !== workout.id,
-      );
+      dispatch(addWorkout(workout));
     }
-
-    dispatch(changeMyWorkouts(newMyWorkouts));
   }
+
+  function handleRemoveWorkout(workout: WorkoutProps) {
+    dispatch(removeWorkout(workout));
+  }
+
+  // function modifyWorkouts(workout: WorkoutProps) {
+  //   let newMyWorkouts = [];
+  //   let index = myWorkouts.findIndex(
+  //     (myWorkout: WorkoutProps) => myWorkout.id === workout.id,
+  //   );
+  //   if (index < 0) {
+  //     newMyWorkouts = [...myWorkouts, workout];
+  //   } else {
+  //     newMyWorkouts = myWorkouts.filter(
+  //       (myWorkout: WorkoutProps) => myWorkout.id !== workout.id,
+  //     );
+  //   }
+
+  //   dispatch(changeMyWorkouts(newMyWorkouts));
+  // }
 
   function renderText() {
     if (myWorkouts.length === 1) {
@@ -80,7 +93,12 @@ export function StarterRecommendations() {
       <WorkoutList
         data={presetWorkouts}
         renderItem={({item, index}: any) => (
-          <Workout key={index} item={item} modifyWorkouts={modifyWorkouts} />
+          <Workout
+            key={index}
+            item={item}
+            addAction={handleAddWorkout}
+            removeAction={handleRemoveWorkout}
+          />
         )}
         //@ts-ignore
         keyExtractor={(item: any) => item.id}

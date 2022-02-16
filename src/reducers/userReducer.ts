@@ -3,7 +3,8 @@ import {WorkoutProps} from '../components/Workout/interfaces';
 const CHANGE_NAME = 'userReducer/changeName';
 const CHANGE_WORKOUT_DAYS = 'userReducer/changeWorkoutDays';
 const CHANGE_LEVEL = 'userReducer/changeLevel';
-const CHANGE_MY_WORKOUTS = 'userReducer/changeMyWorkouts';
+const ADD_WORKOUT = 'userReducer/addWorkout';
+const REMOVE_WORKOUT = 'userReducer/removeWorkout';
 const ADD_PROGRESS = 'userReducer/addProgress';
 const REMOVE_PROGRESS = 'userReducer/removeProgress';
 
@@ -22,9 +23,14 @@ export const changeLevel = (level: string) => ({
   payload: level,
 });
 
-export const changeMyWorkouts = (workouts: WorkoutProps[]) => ({
-  type: CHANGE_MY_WORKOUTS,
-  payload: workouts,
+export const addWorkout = (workout: WorkoutProps) => ({
+  type: ADD_WORKOUT,
+  payload: workout,
+});
+
+export const removeWorkout = (workout: WorkoutProps) => ({
+  type: REMOVE_WORKOUT,
+  payload: workout,
 });
 
 export const addProgress = (dateInfo: string) => ({
@@ -59,8 +65,21 @@ const reducer = (state = initialState, action: Action) => {
       return {...state, workoutDays: action.payload};
     case CHANGE_LEVEL:
       return {...state, level: action.payload};
-    case CHANGE_MY_WORKOUTS:
-      return {...state, myWorkouts: action.payload};
+    case ADD_WORKOUT: {
+      let newWorkouts: WorkoutProps[] = [...state.myWorkouts];
+      newWorkouts.push(action.payload);
+
+      return {...state, myWorkouts: newWorkouts};
+    }
+    case REMOVE_WORKOUT: {
+      let newWorkouts: WorkoutProps[] = [...state.myWorkouts];
+      newWorkouts = newWorkouts.filter(
+        (newWorkout: WorkoutProps) => newWorkout.id !== action.payload.id,
+      );
+
+      return {...state, myWorkouts: newWorkouts};
+    }
+
     case ADD_PROGRESS: {
       let newDailyProgress = [...state.dailyProgress];
 

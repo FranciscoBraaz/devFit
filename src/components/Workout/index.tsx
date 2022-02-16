@@ -16,14 +16,14 @@ import {
 
 interface WorkoutPropsComponent {
   item: WorkoutProps;
-  modifyWorkouts?: (item: WorkoutProps) => void;
-  editAction?: () => void;
-  removeAction?: () => void;
+  addAction?: (item: WorkoutProps) => void;
+  editAction?: (item: WorkoutProps) => void;
+  removeAction?: (item: WorkoutProps) => void;
 }
 
 export function Workout({
   item,
-  modifyWorkouts,
+  addAction,
   editAction,
   removeAction,
 }: WorkoutPropsComponent) {
@@ -50,16 +50,20 @@ export function Workout({
   function toggleWorkout() {
     if (!included) {
       setIncluded(true);
+      addAction && addAction(item);
     } else {
       setIncluded(false);
+      removeAction && removeAction(item);
     }
-
-    modifyWorkouts && modifyWorkouts(item);
   }
 
-  function editWorkout() {}
+  function editWorkout() {
+    editAction && editAction(item);
+  }
 
-  function removeWorkout() {}
+  function removeWorkout() {
+    removeAction && removeAction(item);
+  }
 
   return (
     <WorkoutContainer>
@@ -74,7 +78,7 @@ export function Workout({
         </MuscleScroll>
       </WorkoutInfo>
       <WorkoutActions>
-        {modifyWorkouts && (
+        {addAction && (
           <WorkoutButton onPress={toggleWorkout} underlayColor="transparent">
             <WorkoutButtonImage
               source={
