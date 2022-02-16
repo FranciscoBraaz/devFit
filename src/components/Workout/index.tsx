@@ -16,10 +16,17 @@ import {
 
 interface WorkoutPropsComponent {
   item: WorkoutProps;
-  modifyWorkouts: (item: WorkoutProps) => void;
+  modifyWorkouts?: (item: WorkoutProps) => void;
+  editAction?: () => void;
+  removeAction?: () => void;
 }
 
-export function Workout({item, modifyWorkouts}: WorkoutPropsComponent) {
+export function Workout({
+  item,
+  modifyWorkouts,
+  editAction,
+  removeAction,
+}: WorkoutPropsComponent) {
   //@ts-ignore
   const {myWorkouts} = useSelector(state => state.user);
   const [included, setIncluded] = useState(() => {
@@ -47,8 +54,12 @@ export function Workout({item, modifyWorkouts}: WorkoutPropsComponent) {
       setIncluded(false);
     }
 
-    modifyWorkouts(item);
+    modifyWorkouts && modifyWorkouts(item);
   }
+
+  function editWorkout() {}
+
+  function removeWorkout() {}
 
   return (
     <WorkoutContainer>
@@ -63,15 +74,31 @@ export function Workout({item, modifyWorkouts}: WorkoutPropsComponent) {
         </MuscleScroll>
       </WorkoutInfo>
       <WorkoutActions>
-        <WorkoutButton onPress={toggleWorkout} underlayColor="transparent">
-          <WorkoutButtonImage
-            source={
-              included
-                ? require('../../assets/check-black.png')
-                : require('../../assets/add.png')
-            }
-          />
-        </WorkoutButton>
+        {modifyWorkouts && (
+          <WorkoutButton onPress={toggleWorkout} underlayColor="transparent">
+            <WorkoutButtonImage
+              source={
+                included
+                  ? require('../../assets/check-black.png')
+                  : require('../../assets/add.png')
+              }
+            />
+          </WorkoutButton>
+        )}
+        {editAction && (
+          <WorkoutButton onPress={editWorkout} underlayColor="transparent">
+            <WorkoutButtonImage
+              source={require('../../assets/edit-black.png')}
+            />
+          </WorkoutButton>
+        )}
+        {removeAction && (
+          <WorkoutButton onPress={removeWorkout} underlayColor="transparent">
+            <WorkoutButtonImage
+              source={require('../../assets/trash-black.png')}
+            />
+          </WorkoutButton>
+        )}
       </WorkoutActions>
     </WorkoutContainer>
   );

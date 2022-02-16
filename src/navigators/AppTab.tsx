@@ -7,6 +7,7 @@ import {CustomTabBar} from '../components/CustomTabBar';
 import {Home} from '../screens/Home';
 import {TempScreen} from '../screens/TempScreen';
 import {HomeStack} from './HomeStack';
+import MyWorkoutsStack from './MyWorkoutsStack';
 
 const {Navigator, Screen} = createBottomTabNavigator();
 
@@ -26,7 +27,7 @@ const tabs = [
     type: 'regular',
     text: 'Meus treinos',
     icon: require('../assets/myworkouts.png'),
-    route: 'MyWorkoutStack',
+    route: 'MyWorkoutsStack',
   },
 ];
 
@@ -36,8 +37,8 @@ export function AppTab() {
       tabBar={(props: BottomTabBarProps) => (
         <CustomTabBar {...props} items={tabs} />
       )}>
-      <Screen name="HomeTab" component={HomeStack} />
-      <Screen name="TempScreen1" component={TempScreen} />
+      <Screen name="HomeStack" component={HomeStack} />
+      <Screen name="MyWorkoutsStack" component={MyWorkoutsStack} />
       <Screen name="TempScreen2" component={TempScreen} />
     </Navigator>
   );
