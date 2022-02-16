@@ -59,7 +59,7 @@ export function MyWorkouts() {
             removeAction={handleRemoveWorkout}
           />
         )}
-        keyExtractor={(item: any) => item.id}
+        keyExtractor={(item: any, index: number) => String(index)}
       />
     </Container>
   );

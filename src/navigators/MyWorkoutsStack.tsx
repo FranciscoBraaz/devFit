@@ -16,7 +16,7 @@ export default function MyWorkoutsStack() {
       <Screen
         name="EditWorkout"
         component={EditWorkout}
-        options={{title: 'Editar workout'}}
+        options={{title: 'Editar treino'}}
       />
     </Navigator>
   );
