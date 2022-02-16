@@ -13,3 +13,15 @@ export const NameInput = styled.TextInput`
   font-size: 16px;
   padding: 10px;
 `;
+
+export const SaveButtonArea = styled.TouchableHighlight`
+  width: 30px;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const SaveButtonImage = styled.Image`
+  width: 25px;
+  height: 25px;
+`;

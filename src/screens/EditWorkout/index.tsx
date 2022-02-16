@@ -1,6 +1,12 @@
 import {useNavigation, useRoute} from '@react-navigation/native';
 import React, {useLayoutEffect, useState} from 'react';
-import {Container, NameInput} from './styles';
+import {Container, NameInput, SaveButtonArea, SaveButtonImage} from './styles';
+
+const SaveWorkoutButton = () => (
+  <SaveButtonArea>
+    <SaveButtonImage source={require('../../assets/check-black.png')} />
+  </SaveButtonArea>
+);
 
 export default function EditWorkout() {
   const navigation = useNavigation();
@@ -15,6 +21,10 @@ export default function EditWorkout() {
   useLayoutEffect(() => {
     navigation.setOptions({
       title: isEdit ? 'Editar treino' : 'Adicionar treino',
+      headerRight: () => <SaveWorkoutButton />,
+      headerRightContainerStyle: {
+        marginRight: 10,
+      },
     });
   }, []);
 
