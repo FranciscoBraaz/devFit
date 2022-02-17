@@ -1,6 +1,16 @@
 import {useNavigation, useRoute} from '@react-navigation/native';
 import React, {useLayoutEffect, useState} from 'react';
-import {Container, NameInput, SaveButtonArea, SaveButtonImage} from './styles';
+import {ExerciseItem} from '../../components/ExerciseItem';
+import {DefaultButton} from '../../styles/global';
+import {
+  ButtonText,
+  Container,
+  ExercisesArea,
+  ExercisesList,
+  NameInput,
+  SaveButtonArea,
+  SaveButtonImage,
+} from './styles';
 
 const SaveWorkoutButton = () => (
   <SaveButtonArea>
@@ -17,6 +27,7 @@ export default function EditWorkout() {
     //@ts-ignore
     route.params && route.params.workout ? route.params.workout : null;
   const [name, setName] = useState(workout ? workout.name : '');
+  const [exercises, setExercises] = useState(workout ? workout.exercises : []);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -35,6 +46,17 @@ export default function EditWorkout() {
         onChangeText={value => setName(value)}
         placeholder="Digite o nome do treino"
       />
+      <ExercisesArea>
+        <DefaultButton bgColor="#A4C34E" padding="0px 20px">
+          <ButtonText>Adicionar treino</ButtonText>
+        </DefaultButton>
+
+        <ExercisesList
+          data={exercises}
+          renderItem={({item}: any) => <ExerciseItem data={item} />}
+          keyExtractor={(item: any) => item.name}
+        />
+      </ExercisesArea>
     </Container>
   );
 }

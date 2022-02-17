@@ -25,3 +25,21 @@ export const SaveButtonImage = styled.Image`
   width: 25px;
   height: 25px;
 `;
+
+export const ButtonText = styled.TextInput`
+  color: #fff;
+  font-size: 16px;
+`;
+
+export const ExercisesArea = styled.View`
+  flex: 1;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top-width: 1px;
+  border-top-color: #ccc;
+`;
+
+export const ExercisesList = styled.FlatList`
+  flex: 1;
+  padding-top: 20px;
+`;
