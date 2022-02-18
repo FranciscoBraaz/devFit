@@ -36,3 +36,15 @@ export const ExerciseDetails = styled.Text`
   font-size: 12px;
   color: #999;
 `;
+
+export const ExerciseSwipe = styled.TouchableHighlight`
+  height: 50px;
+  background-color: #ff0000;
+  justify-content: center;
+`;
+
+export const ExerciseSwipeIcon = styled.Image`
+  width: 20px;
+  height: 20px;
+  margin-left: 15px;
+`;

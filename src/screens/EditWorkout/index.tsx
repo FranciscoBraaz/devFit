@@ -1,6 +1,7 @@
 import {useNavigation, useRoute} from '@react-navigation/native';
 import React, {useLayoutEffect, useState} from 'react';
 import {ExerciseItem} from '../../components/ExerciseItem';
+import {ExerciseProps} from '../../components/Workout/interfaces';
 import {DefaultButton} from '../../styles/global';
 import {
   ButtonText,
@@ -39,6 +40,23 @@ export default function EditWorkout() {
     });
   }, []);
 
+  function editWorkout(item: ExerciseProps) {
+    let newExercises = [...exercises];
+    newExercises = newExercises.map(exercise => {
+      if (exercise.id === item.id) {
+        exercise = {...item};
+      }
+    });
+
+    setExercises(newExercises);
+  }
+
+  function removeWorkout(item: ExerciseProps) {
+    let newExercises = [...exercises];
+    newExercises = newExercises.filter(exercise => exercise.id !== item.id);
+    setExercises(newExercises);
+  }
+
   return (
     <Container>
       <NameInput
@@ -53,7 +71,13 @@ export default function EditWorkout() {
 
         <ExercisesList
           data={exercises}
-          renderItem={({item}: any) => <ExerciseItem data={item} />}
+          renderItem={({item}: any) => (
+            <ExerciseItem
+              data={item}
+              editAction={editWorkout}
+              removeAction={removeWorkout}
+            />
+          )}
           keyExtractor={(item: any) => item.name}
         />
       </ExercisesArea>
