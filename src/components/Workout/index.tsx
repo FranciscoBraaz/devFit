@@ -70,8 +70,8 @@ export function Workout({
       <WorkoutInfo>
         <WorkoutTitle>{item.name}</WorkoutTitle>
         <MuscleScroll horizontal={true}>
-          {muscleGroups.map((muscle: string) => (
-            <MuscleGroup>
+          {muscleGroups.map((muscle: string, index: number) => (
+            <MuscleGroup key={index}>
               <MuscleImage source={useSourceImage(muscle)} />
             </MuscleGroup>
           ))}
