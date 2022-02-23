@@ -1,10 +1,8 @@
 import {useNavigation, useRoute} from '@react-navigation/native';
 import React, {useEffect, useLayoutEffect, useState} from 'react';
-import {useForm} from 'react-hook-form';
-import {Alert, Text} from 'react-native';
 import {CustomModal} from '../../components/CustomModal';
 import {ExerciseItem} from '../../components/ExerciseItem';
-import {ExerciseProps} from '../../components/Workout/interfaces';
+import {ExerciseProps, WorkoutProps} from '../../components/Workout/interfaces';
 import {DefaultButton} from '../../styles/global';
 import {useSourceImage} from '../../utils/useSourceImage';
 import {
@@ -23,6 +21,8 @@ import {
   SaveButtonArea,
   SaveButtonImage,
 } from './styles';
+import 'react-native-get-random-values';
+import * as uuid from 'uuid';
 
 const SaveWorkoutButton = () => (
   <SaveButtonArea>
@@ -39,13 +39,16 @@ export default function EditWorkout() {
     //@ts-ignore
     route.params && route.params.workout ? route.params.workout : null;
   const [name, setName] = useState(workout ? workout.name : '');
-  const [exercises, setExercises] = useState(workout ? workout.exercises : []);
+  const [exercises, setExercises] = useState<ExerciseProps[]>(
+    workout ? workout.exercises : [],
+  );
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalName, setModalName] = useState('');
   const [modalMuscle, setModalMuscle] = useState('');
   const [modalReps, setModalReps] = useState('');
   const [modalSets, setModalSets] = useState('');
   const [modalLoad, setModalLoad] = useState('');
+  const [modalId, setModalId] = useState('');
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -63,16 +66,50 @@ export default function EditWorkout() {
     setModalReps(item.reps);
     setModalSets(item.sets);
     setModalLoad(item.load);
+    setModalId(item.id);
 
     setModalIsOpen(true);
+  }
 
-    // let newExercises = [...exercises];
-    // newExercises = newExercises.map(exercise => {
-    //   if (exercise.id === item.id) {
-    //     exercise = {...item};
-    //   }
-    // });
-    // setExercises(newExercises);
+  function saveWourkout() {
+    let newExercises = [...exercises];
+    if (modalId) {
+      let index = newExercises.findIndex(exercise => exercise.id === modalId);
+      let exerciseSelected = newExercises[index];
+      exerciseSelected.name = modalName;
+      exerciseSelected.reps = modalReps;
+      exerciseSelected.sets = modalSets;
+      exerciseSelected.load = modalLoad;
+      exerciseSelected.muscle = modalMuscle;
+    } else {
+      let newExercise = {
+        id: uuid.v4(),
+        name: modalName,
+        reps: modalReps,
+        sets: modalSets,
+        load: modalLoad,
+        muscle: modalMuscle,
+      };
+
+      newExercises.push(newExercise);
+    }
+
+    setExercises(newExercises);
+    setModalIsOpen(false);
+  }
+
+  function resetWorkout() {
+    setModalName('');
+    setModalMuscle('');
+    setModalReps('');
+    setModalSets('');
+    setModalLoad('');
+    setModalId('');
+  }
+
+  function addWorkout() {
+    resetWorkout();
+    setModalIsOpen(true);
   }
 
   function removeWorkout(item: ExerciseProps) {
@@ -119,24 +156,40 @@ export default function EditWorkout() {
         </ModalMuscles>
 
         <ModalLabel>Nome do exercício</ModalLabel>
-        <ModalInput value={modalName} />
+        <ModalInput
+          value={modalName}
+          onChangeText={value => setModalName(value)}
+        />
 
         <ModalNumericArea>
           <ModalNumericItem>
             <ModalLabel>Séries</ModalLabel>
-            <ModalInput value={modalSets} />
+            <ModalInput
+              value={modalSets}
+              onChangeText={value => setModalSets(value)}
+            />
           </ModalNumericItem>
           <ModalNumericItem>
             <ModalLabel>Repetições</ModalLabel>
-            <ModalInput value={modalReps} />
+            <ModalInput
+              value={modalReps}
+              onChangeText={value => setModalReps(value)}
+            />
           </ModalNumericItem>
           <ModalNumericItem>
             <ModalLabel>Carga</ModalLabel>
-            <ModalInput value={modalLoad} />
+            <ModalInput
+              value={modalLoad}
+              onChangeText={value => setModalLoad(value)}
+            />
           </ModalNumericItem>
         </ModalNumericArea>
 
-        <DefaultButton bgColor="#4AC34E" padding="0px 20px">
+        <DefaultButton
+          bgColor="#4AC34E"
+          padding="0px 20px"
+          onPress={saveWourkout}
+          underlayColor="transparent">
           <ButtonText>Salvar</ButtonText>
         </DefaultButton>
       </CustomModal>
@@ -146,7 +199,11 @@ export default function EditWorkout() {
         placeholder="Digite o nome do treino"
       />
       <ExercisesArea>
-        <DefaultButton bgColor="#A4C34E" padding="0px 20px">
+        <DefaultButton
+          bgColor="#A4C34E"
+          padding="0px 20px"
+          onPress={addWorkout}
+          underlayColor="transparent">
           <ButtonText>Adicionar treino</ButtonText>
         </DefaultButton>
 
