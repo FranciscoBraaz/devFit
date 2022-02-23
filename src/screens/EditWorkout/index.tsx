@@ -23,6 +23,7 @@ import {
 } from './styles';
 import 'react-native-get-random-values';
 import * as uuid from 'uuid';
+import {Alert} from 'react-native';
 
 const SaveWorkoutButton = () => (
   <SaveButtonArea>
@@ -72,6 +73,17 @@ export default function EditWorkout() {
   }
 
   function saveWourkout() {
+    if (
+      modalName !== '' ||
+      modalReps !== '' ||
+      modalLoad !== '' ||
+      modalSets !== '' ||
+      modalMuscle !== ''
+    ) {
+      Alert.alert('', 'Preencha todas informações');
+      return;
+    }
+
     let newExercises = [...exercises];
     if (modalId) {
       let index = newExercises.findIndex(exercise => exercise.id === modalId);
@@ -189,7 +201,7 @@ export default function EditWorkout() {
           bgColor="#4AC34E"
           padding="0px 20px"
           onPress={saveWourkout}
-          underlayColor="transparent">
+          underlayColor="#4AC34E">
           <ButtonText>Salvar</ButtonText>
         </DefaultButton>
       </CustomModal>
@@ -203,7 +215,7 @@ export default function EditWorkout() {
           bgColor="#A4C34E"
           padding="0px 20px"
           onPress={addWorkout}
-          underlayColor="transparent">
+          underlayColor="#4AC34E">
           <ButtonText>Adicionar treino</ButtonText>
         </DefaultButton>
 
