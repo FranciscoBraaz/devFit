@@ -10,3 +10,7 @@ export const Container = styled.View`
 export const WorkoutList = styled.FlatList`
   width: 100%;
 `;
+
+export const Title = styled.Text`
+  margin-bottom: 10px;
+`;
