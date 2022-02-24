@@ -5,6 +5,7 @@ import {
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import {CustomTabBar} from '../components/CustomTabBar';
+import WorkoutChecklist from '../screens/WorkoutChecklist';
 import {WorkoutSelect} from '../screens/WorkoutSelect';
 import {HomeStack} from './HomeStack';
 import MyWorkoutsStack from './MyWorkoutsStack';
@@ -50,6 +51,11 @@ export function AppTab() {
         name="WorkoutSelect"
         component={WorkoutSelect}
         options={{title: 'Escolha seu treino', headerShown: true}}
+      />
+      <Stack.Screen
+        name="WorkoutChecklist"
+        component={WorkoutChecklist}
+        options={{headerShown: false}}
       />
     </Stack.Navigator>
   );

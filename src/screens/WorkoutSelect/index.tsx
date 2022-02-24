@@ -18,8 +18,8 @@ export function WorkoutSelect() {
     );
   }
 
-  function handleGoWorkout(item: any) {
-    navigation.navigate('WorkoutChecklist', {});
+  function handleGoWorkout(workout: any) {
+    navigation.navigate('WorkoutChecklist', {workout});
   }
 
   return (
