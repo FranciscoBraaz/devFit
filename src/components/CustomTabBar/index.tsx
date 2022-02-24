@@ -1,6 +1,10 @@
 import React from 'react';
 import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
-import {NavigationHelpers, ParamListBase} from '@react-navigation/native';
+import {
+  NavigationHelpers,
+  ParamListBase,
+  useRoute,
+} from '@react-navigation/native';
 import {
   TabBall,
   TabBallImage,

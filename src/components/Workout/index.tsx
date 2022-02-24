@@ -19,6 +19,7 @@ interface WorkoutPropsComponent {
   addAction?: (item: WorkoutProps) => void;
   editAction?: (item: WorkoutProps) => void;
   removeAction?: (item: WorkoutProps) => void;
+  goAction?: () => void;
 }
 
 export function Workout({
@@ -26,6 +27,7 @@ export function Workout({
   addAction,
   editAction,
   removeAction,
+  goAction,
 }: WorkoutPropsComponent) {
   //@ts-ignore
   const {myWorkouts} = useSelector(state => state.user);
@@ -100,6 +102,13 @@ export function Workout({
           <WorkoutButton onPress={removeWorkout} underlayColor="transparent">
             <WorkoutButtonImage
               source={require('../../assets/trash-black.png')}
+            />
+          </WorkoutButton>
+        )}
+        {goAction && (
+          <WorkoutButton onPress={goAction} underlayColor="transparent">
+            <WorkoutButtonImage
+              source={require('../../assets/play-black.png')}
             />
           </WorkoutButton>
         )}

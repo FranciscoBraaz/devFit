@@ -2,14 +2,15 @@ import {
   createBottomTabNavigator,
   BottomTabBarProps,
 } from '@react-navigation/bottom-tabs';
+import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import {CustomTabBar} from '../components/CustomTabBar';
-import {Home} from '../screens/Home';
-import {TempScreen} from '../screens/TempScreen';
+import {WorkoutSelect} from '../screens/WorkoutSelect';
 import {HomeStack} from './HomeStack';
 import MyWorkoutsStack from './MyWorkoutsStack';
 
-const {Navigator, Screen} = createBottomTabNavigator();
+const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 const tabs = [
   {
@@ -21,7 +22,7 @@ const tabs = [
   {
     type: 'big',
     icon: require('../assets/dumbbell.png'),
-    route: 'WorkoutStack',
+    route: 'WorkoutSelect',
   },
   {
     type: 'regular',
@@ -31,15 +32,25 @@ const tabs = [
   },
 ];
 
+export const Tabs = () => (
+  <Tab.Navigator
+    tabBar={(props: BottomTabBarProps) => (
+      <CustomTabBar {...props} items={tabs} />
+    )}>
+    <Tab.Screen name="HomeStack" component={HomeStack} />
+    <Tab.Screen name="MyWorkoutsStack" component={MyWorkoutsStack} />
+  </Tab.Navigator>
+);
+
 export function AppTab() {
   return (
-    <Navigator
-      tabBar={(props: BottomTabBarProps) => (
-        <CustomTabBar {...props} items={tabs} />
-      )}>
-      <Screen name="HomeStack" component={HomeStack} />
-      <Screen name="MyWorkoutsStack" component={MyWorkoutsStack} />
-      <Screen name="TempScreen2" component={TempScreen} />
-    </Navigator>
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="AppTabs" component={Tabs} />
+      <Stack.Screen
+        name="WorkoutSelect"
+        component={WorkoutSelect}
+        options={{title: 'Escolha seu treino', headerShown: true}}
+      />
+    </Stack.Navigator>
   );
 }
