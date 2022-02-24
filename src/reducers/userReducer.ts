@@ -4,6 +4,7 @@ const CHANGE_NAME = 'userReducer/changeName';
 const CHANGE_WORKOUT_DAYS = 'userReducer/changeWorkoutDays';
 const CHANGE_LEVEL = 'userReducer/changeLevel';
 const ADD_WORKOUT = 'userReducer/addWorkout';
+const EDIT_WORKOUT = 'useReducer/editWorkout';
 const REMOVE_WORKOUT = 'userReducer/removeWorkout';
 const ADD_PROGRESS = 'userReducer/addProgress';
 const REMOVE_PROGRESS = 'userReducer/removeProgress';
@@ -25,6 +26,11 @@ export const changeLevel = (level: string) => ({
 
 export const addWorkout = (workout: WorkoutProps) => ({
   type: ADD_WORKOUT,
+  payload: workout,
+});
+
+export const editWorkout = (workout: WorkoutProps) => ({
+  type: EDIT_WORKOUT,
   payload: workout,
 });
 
@@ -71,6 +77,15 @@ const reducer = (state = initialState, action: Action) => {
 
       return {...state, myWorkouts: newWorkouts};
     }
+    case EDIT_WORKOUT: {
+      let newWorkouts: WorkoutProps[] = [...state.myWorkouts];
+      let index = newWorkouts.findIndex(
+        workout => workout.id === action.payload.id,
+      );
+      newWorkouts[index] = action.payload;
+
+      return {...state, myWorkouts: newWorkouts};
+    }
     case REMOVE_WORKOUT: {
       let newWorkouts: WorkoutProps[] = [...state.myWorkouts];
       newWorkouts = newWorkouts.filter(
@@ -79,7 +94,6 @@ const reducer = (state = initialState, action: Action) => {
 
       return {...state, myWorkouts: newWorkouts};
     }
-
     case ADD_PROGRESS: {
       let newDailyProgress = [...state.dailyProgress];
 

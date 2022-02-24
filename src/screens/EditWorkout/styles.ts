@@ -30,7 +30,7 @@ export const SaveButtonImage = styled.Image`
   height: 25px;
 `;
 
-export const ButtonText = styled.TextInput`
+export const ButtonText = styled.Text`
   color: #fff;
   font-size: 16px;
 `;

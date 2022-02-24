@@ -24,9 +24,15 @@ import {
 import 'react-native-get-random-values';
 import * as uuid from 'uuid';
 import {Alert} from 'react-native';
+import {useDispatch} from 'react-redux';
+import {addWorkout, editWorkout} from '../../reducers/userReducer';
 
-const SaveWorkoutButton = () => (
-  <SaveButtonArea>
+interface SaveWorkoutButtonProps {
+  handleSave: () => void;
+}
+
+const SaveWorkoutButton = ({handleSave}: SaveWorkoutButtonProps) => (
+  <SaveButtonArea onPress={handleSave} underlayColor="trasparent">
     <SaveButtonImage source={require('../../assets/check-black.png')} />
   </SaveButtonArea>
 );
@@ -50,18 +56,46 @@ export default function EditWorkout() {
   const [modalSets, setModalSets] = useState('');
   const [modalLoad, setModalLoad] = useState('');
   const [modalId, setModalId] = useState('');
+  const dispatch = useDispatch();
 
   useLayoutEffect(() => {
+    function handleSave() {
+      if (exercises.length === 0 || name === '') {
+        Alert.alert(
+          '',
+          'Um treino precisa de um nome e pelo menos 1 exercício',
+        );
+        return;
+      }
+
+      if (isEdit) {
+        let newWorkout = {
+          name,
+          exercises,
+          id: workout.id,
+        };
+        dispatch(editWorkout(newWorkout));
+      } else {
+        let newWorkout = {
+          name,
+          exercises,
+          id: uuid.v4(),
+        };
+        dispatch(addWorkout(newWorkout));
+      }
+      navigation.goBack();
+    }
+
     navigation.setOptions({
       title: isEdit ? 'Editar treino' : 'Adicionar treino',
-      headerRight: () => <SaveWorkoutButton />,
+      headerRight: () => <SaveWorkoutButton handleSave={handleSave} />,
       headerRightContainerStyle: {
         marginRight: 10,
       },
     });
-  }, []);
+  }, [workout, isEdit, name, exercises]);
 
-  function editWorkout(item: ExerciseProps) {
+  function handleEditWorkout(item: ExerciseProps) {
     setModalName(item.name);
     setModalMuscle(item.muscle);
     setModalReps(item.reps);
@@ -74,11 +108,11 @@ export default function EditWorkout() {
 
   function saveWourkout() {
     if (
-      modalName !== '' ||
-      modalReps !== '' ||
-      modalLoad !== '' ||
-      modalSets !== '' ||
-      modalMuscle !== ''
+      modalName === '' ||
+      modalReps === '' ||
+      modalLoad === '' ||
+      modalSets === '' ||
+      modalMuscle === ''
     ) {
       Alert.alert('', 'Preencha todas informações');
       return;
@@ -119,7 +153,7 @@ export default function EditWorkout() {
     setModalId('');
   }
 
-  function addWorkout() {
+  function handleAddWorkout() {
     resetWorkout();
     setModalIsOpen(true);
   }
@@ -178,6 +212,7 @@ export default function EditWorkout() {
             <ModalLabel>Séries</ModalLabel>
             <ModalInput
               value={modalSets}
+              keyboardType="numeric"
               onChangeText={value => setModalSets(value)}
             />
           </ModalNumericItem>
@@ -185,6 +220,7 @@ export default function EditWorkout() {
             <ModalLabel>Repetições</ModalLabel>
             <ModalInput
               value={modalReps}
+              keyboardType="numeric"
               onChangeText={value => setModalReps(value)}
             />
           </ModalNumericItem>
@@ -192,6 +228,7 @@ export default function EditWorkout() {
             <ModalLabel>Carga</ModalLabel>
             <ModalInput
               value={modalLoad}
+              keyboardType="numeric"
               onChangeText={value => setModalLoad(value)}
             />
           </ModalNumericItem>
@@ -199,7 +236,6 @@ export default function EditWorkout() {
 
         <DefaultButton
           bgColor="#4AC34E"
-          padding="0px 20px"
           onPress={saveWourkout}
           underlayColor="#4AC34E">
           <ButtonText>Salvar</ButtonText>
@@ -208,15 +244,14 @@ export default function EditWorkout() {
       <NameInput
         value={name}
         onChangeText={value => setName(value)}
-        placeholder="Digite o nome do treino"
+        placeholder="Digite o nome do exercício"
       />
       <ExercisesArea>
         <DefaultButton
           bgColor="#A4C34E"
-          padding="0px 20px"
-          onPress={addWorkout}
+          onPress={handleAddWorkout}
           underlayColor="#4AC34E">
-          <ButtonText>Adicionar treino</ButtonText>
+          <ButtonText>Adicionar exercício</ButtonText>
         </DefaultButton>
 
         <ExercisesList
@@ -224,7 +259,7 @@ export default function EditWorkout() {
           renderItem={({item}: any) => (
             <ExerciseItem
               data={item}
-              editAction={editWorkout}
+              editAction={handleEditWorkout}
               removeAction={removeWorkout}
             />
           )}

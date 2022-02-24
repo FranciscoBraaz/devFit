@@ -59,8 +59,6 @@ export function Home() {
         removeProgress={removeProgress}
         goToWorkout={() => navigation.navigate('WorkoutStack')}
       />
-      <LegendText>Mês: {selectedMonth + 1}</LegendText>
-      <LegendText>Dia: {selectedDay}</LegendText>
       <Legend />
     </Container>
   );
