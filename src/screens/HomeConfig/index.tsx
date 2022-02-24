@@ -1,10 +1,12 @@
+import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
-import {Alert} from 'react-native';
+import {Alert, Text} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {
   changeLevel,
   changeName,
   changeWorkoutDays,
+  reset,
 } from '../../reducers/userReducer';
 import {
   Container,
@@ -15,6 +17,7 @@ import {
   DayText,
   LevelItem,
   LevelText,
+  ResetButton,
 } from './styles';
 
 export function HomeConfig() {
@@ -23,6 +26,7 @@ export function HomeConfig() {
   //@ts-ignore
   const {name, workoutDays, level} = useSelector(state => state.user);
   const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   function toggleWorkoutDay(day: number) {
     let newWorkoutDays = [...workoutDays];
@@ -42,6 +46,14 @@ export function HomeConfig() {
 
   function handleChangeLevel(level: string) {
     dispatch(changeLevel(level));
+  }
+
+  function handleReset() {
+    dispatch(reset());
+    navigation.reset({
+      index: 0,
+      routes: [{name: 'StarterStack'}],
+    });
   }
 
   return (
@@ -76,6 +88,11 @@ export function HomeConfig() {
           </LevelItem>
         ))}
       </ListArea>
+
+      <Label>Você quer resetar seus dados?</Label>
+      <ResetButton onPress={handleReset} underlayColor="transparent">
+        <Text style={{color: '#bbb', fontSize: 16}}>Resetar</Text>
+      </ResetButton>
     </Container>
   );
 }

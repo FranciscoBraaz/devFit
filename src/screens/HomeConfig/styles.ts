@@ -47,3 +47,11 @@ export const LevelItem = styled.TouchableHighlight`
 `;
 
 export const LevelText = styled.Text``;
+
+export const ResetButton = styled.TouchableHighlight`
+  background-color: transparent;
+  align-self: center;
+  border: 1px solid #bbb;
+  padding: 5px 20px;
+  border-radius: 8px;
+`;
