@@ -14,7 +14,7 @@ export function WorkoutSelect() {
 
   if (lastWorkoutState) {
     lastWorkout = myWorkouts.find(
-      (myWorkout: any) => myWorkout.id === lastWorkoutState.id,
+      (myWorkout: any) => String(myWorkout.id) === String(lastWorkoutState),
     );
   }
 
@@ -30,7 +30,7 @@ export function WorkoutSelect() {
           <Workout item={lastWorkout} />
         </>
       )}
-      <Title>Escolha seu treino de hoje:</Title>
+      <Title>Escolha seu treino:</Title>
       <WorkoutList
         data={myWorkouts}
         renderItem={({item, index}: any) => (

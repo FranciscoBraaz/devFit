@@ -8,6 +8,7 @@ const EDIT_WORKOUT = 'useReducer/editWorkout';
 const REMOVE_WORKOUT = 'userReducer/removeWorkout';
 const ADD_PROGRESS = 'userReducer/addProgress';
 const REMOVE_PROGRESS = 'userReducer/removeProgress';
+const SET_LAST_WORKOUT = 'userReducer/setLastWorkout';
 const RESET = 'userReducer/reset';
 
 export const changeName = (name: string) => ({
@@ -48,6 +49,11 @@ export const addProgress = (dateInfo: string) => ({
 export const removeProgress = (dateInfo: string) => ({
   type: REMOVE_PROGRESS,
   payload: dateInfo,
+});
+
+export const setLastWorkout = (id: string) => ({
+  type: SET_LAST_WORKOUT,
+  payload: id,
 });
 
 export const reset = () => ({
@@ -118,6 +124,9 @@ const reducer = (state = initialState, action: Action) => {
       );
 
       return {...state, dailyProgress: newDailyProgress};
+    }
+    case SET_LAST_WORKOUT: {
+      return {...state, lastWorkout: action.payload};
     }
     case RESET: {
       return initialState;

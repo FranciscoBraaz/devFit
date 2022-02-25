@@ -57,7 +57,7 @@ export function Home() {
         workoutDays={workoutDays}
         addProgress={addProgress}
         removeProgress={removeProgress}
-        goToWorkout={() => navigation.navigate('WorkoutStack')}
+        goToWorkout={() => navigation.navigate('WorkoutSelect')}
       />
       <Legend />
     </Container>
