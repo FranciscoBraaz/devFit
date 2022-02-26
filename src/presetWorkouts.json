@@ -5,19 +5,75 @@
     "exercises": [
       {
         "id": 1,
-        "name": "Supino Inclinado",
+        "name": "Supino inclinado",
         "muscle": "chest",
         "sets": "3",
-        "reps": "10",
-        "load": "20"
+        "reps": "12",
+        "load": "10"
       },
       {
         "id": 2,
-        "name": "Ex 2",
-        "muscle": "biceps",
-        "sets": "2",
+        "name": "Supino reto",
+        "muscle": "chest",
+        "sets": "3",
         "reps": "12",
         "load": "10"
+      },
+      {
+        "id": 3,
+        "name": "Peck deck",
+        "muscle": "chest",
+        "sets": "3",
+        "reps": "12",
+        "load": "26"
+      },
+      {
+        "id": 4,
+        "name": "Cadeira extensora",
+        "muscle": "legs",
+        "sets": "3",
+        "reps": "12",
+        "load": "26"
+      },
+      {
+        "id": 5,
+        "name": "Leg press inclicado",
+        "muscle": "legs",
+        "sets": "3",
+        "reps": "12",
+        "load": "100"
+      },
+      {
+        "id": 6,
+        "name": "Flexora deitada",
+        "muscle": "legs",
+        "sets": "3",
+        "reps": "12",
+        "load": "31"
+      },
+      {
+        "id": 7,
+        "name": "Triceps pulley",
+        "muscle": "triceps",
+        "sets": "3",
+        "reps": "12",
+        "load": "26"
+      },
+      {
+        "id": 8,
+        "name": "Triceps na máquina",
+        "muscle": "triceps",
+        "sets": "3",
+        "reps": "12",
+        "load": "26"
+      },
+      {
+        "id": 9,
+        "name": "Abs infra",
+        "muscle": "abs",
+        "sets": "3",
+        "reps": "20",
+        "load": "0"
       }
     ]
   },
@@ -27,11 +83,59 @@
     "exercises": [
       {
         "id": 1,
-        "name": "Supino Inclinado",
-        "muscle": "chest",
+        "name": "Pulley frente",
+        "muscle": "back",
         "sets": "3",
         "reps": "10",
-        "load": "20"
+        "load": "31"
+      },
+      {
+        "id": 2,
+        "name": "Pulley frente supinado",
+        "muscle": "back",
+        "sets": "3",
+        "reps": "10",
+        "load": "31"
+      },
+      {
+        "id": 3,
+        "name": "Remada baixa",
+        "muscle": "back",
+        "sets": "3",
+        "reps": "10",
+        "load": "31"
+      },
+      {
+        "id": 4,
+        "name": "Rosca direta",
+        "muscle": "biceps",
+        "sets": "3",
+        "reps": "10",
+        "load": "4"
+      },
+      {
+        "id": 5,
+        "name": "Rosca alternada",
+        "muscle": "biceps",
+        "sets": "3",
+        "reps": "10",
+        "load": "4"
+      },
+      {
+        "id": 6,
+        "name": "Panturilha no leg",
+        "muscle": "legs",
+        "sets": "3",
+        "reps": "10",
+        "load": "8"
+      },
+      {
+        "id": 7,
+        "name": "Panturrilha na máquina",
+        "muscle": "legs",
+        "sets": "3",
+        "reps": "10",
+        "load": "8"
       }
     ]
   },
@@ -41,11 +145,35 @@
     "exercises": [
       {
         "id": 1,
-        "name": "Supino Inclinado",
-        "muscle": "chest",
+        "name": "Elevação lateral",
+        "muscle": "shoulders",
         "sets": "3",
-        "reps": "10",
-        "load": "20"
+        "reps": "12",
+        "load": "4"
+      },
+      {
+        "id": 2,
+        "name": "Elevação frontal alternada",
+        "muscle": "shoulders",
+        "sets": "3",
+        "reps": "12",
+        "load": "4"
+      },
+      {
+        "id": 3,
+        "name": "Extensão lombar",
+        "muscle": "back",
+        "sets": "3",
+        "reps": "12",
+        "load": "0"
+      },
+      {
+        "id": 4,
+        "name": "Agachamento",
+        "muscle": "gluteos",
+        "sets": "3",
+        "reps": "12",
+        "load": "8"
       }
     ]
   }
