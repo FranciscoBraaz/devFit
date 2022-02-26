@@ -22,7 +22,7 @@ pré-configurados, porém existe a possibilidade de adicionar, editar ou excluir
  - Swipe List View
 
 ## 💻 Preview:
-https://user-images.githubusercontent.com/50181942/155859147-ad4925e0-e174-444e-9767-f98a5fe35bc5.mp4
+https://user-images.githubusercontent.com/50181942/155859227-300fcae8-5b8a-463d-8410-baa870150bd2.mp4
 
 ##
 👨‍💻 Desenvolvido por [Francisco Braz](https://github.com/FranciscoBraaz)
