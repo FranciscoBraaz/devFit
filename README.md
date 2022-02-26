@@ -13,7 +13,7 @@ Aplicação desenvolvida durante o curso de React-native da B7Web com o objetivo
 A aplicação que tem como objetivo realizar o gerenciamento de treinos, possibilitando o controle das atividades ao longo das semanas/meses. Ela vem com treinos 
 pré-configurados, porém existe a possibilidade de adicionar, editar ou excluir os treinos. Para realizar a persistência dos dados cadastrados é utilizado o Redux.
 
-<img src="https://i.imgur.com/y7vttnN.jpg" alt="Página inicial, para realizar configurações" width="30%" height="30%"/> <img src="https://i.imgur.com/FdPpbEU.jpg" alt="Página home" width="30%" height="30%"/>
+<img src="https://i.imgur.com/y7vttnN.jpg" alt="Página inicial, para realizar configurações" width="30%" height="30%"/> <img src="https://i.imgur.com/FdPpbEU.jpg" alt="Página home" width="30%" height="30%"/> <img src="https://i.imgur.com/XMlaMgo.jpg" alt="Página home" width="30%" height="30%"/>
 
 
 ## 🛠️ Tencologias utilizadas
