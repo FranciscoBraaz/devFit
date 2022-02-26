@@ -7,9 +7,11 @@ import {
   ModalBox,
   ModalBoxArea,
   ModalClose,
+  ModalHeader,
+  ModalTitle,
 } from './styles';
 
-export function CustomModal({isVisible, children, onClose}: any) {
+export function CustomModal({isVisible, title, children, onClose}: any) {
   return (
     <Modal visible={isVisible} transparent={true} animationType="fade">
       <ModalBoxArea behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
@@ -22,9 +24,13 @@ export function CustomModal({isVisible, children, onClose}: any) {
           bounces={false}
           showsVerticalScrollIndicator={false}> */}
         <ModalBox>
-          <ModalClose onPress={onClose} underlayColor="transparent">
-            <CloseText>X</CloseText>
-          </ModalClose>
+          <ModalHeader>
+            <ModalTitle>{title}</ModalTitle>
+            <ModalClose onPress={onClose} underlayColor="transparent">
+              <CloseText>X</CloseText>
+            </ModalClose>
+          </ModalHeader>
+
           <ModalBody>{children}</ModalBody>
         </ModalBox>
         {/* </ScrollView> */}

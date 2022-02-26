@@ -19,17 +19,20 @@ const tabs = [
     text: 'Início',
     icon: require('../assets/home.png'),
     route: 'HomeStack',
+    index: 0,
   },
   {
     type: 'big',
     icon: require('../assets/dumbbell.png'),
     route: 'WorkoutSelect',
+    index: 2,
   },
   {
     type: 'regular',
     text: 'Meus treinos',
     icon: require('../assets/myworkouts.png'),
     route: 'MyWorkoutsStack',
+    index: 1,
   },
 ];
 

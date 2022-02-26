@@ -11,6 +11,8 @@ export const TabBarItem = styled.View`
 `;
 export const TabBarRegular = styled.TouchableHighlight`
   align-items: center;
+  justify-content: center;
+  flex: 1;
 `;
 export const TabImage = styled.Image`
   width: 25px;

@@ -13,7 +13,11 @@ export function HomeStack() {
         headerStyle: {borderBottomColor: '#eee', borderBottomWidth: 1},
       }}>
       <Screen name="Home" component={Home} />
-      <Screen name="HomeConfig" component={HomeConfig} />
+      <Screen
+        name="HomeConfig"
+        component={HomeConfig}
+        options={{title: 'Configurações'}}
+      />
     </Navigator>
   );
 }

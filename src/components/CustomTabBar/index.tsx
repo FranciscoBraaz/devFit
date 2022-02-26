@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
 import {
   NavigationHelpers,
   ParamListBase,
+  useIsFocused,
   useRoute,
 } from '@react-navigation/native';
 import {
@@ -13,21 +14,24 @@ import {
   TabBarRegular,
   TabImage,
 } from './styles';
-import {ImageSourcePropType, Text} from 'react-native';
+import {Alert, ImageSourcePropType, Text} from 'react-native';
+import IconHome from 'react-native-vector-icons/AntDesign';
+import IconList from 'react-native-vector-icons/Feather';
+import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
 
 interface ItemProps {
   type: string;
   text?: string;
   icon: ImageSourcePropType;
   route: string;
+  index: number;
 }
 
-interface CustomTabBarProps {
-  navigation: NavigationHelpers<ParamListBase>;
+interface CustomTabBarProps extends BottomTabBarProps {
   items: ItemProps[];
 }
 
-export function CustomTabBar({navigation, items}: CustomTabBarProps) {
+export function CustomTabBar({navigation, items, state}: CustomTabBarProps) {
   return (
     <TabBarArea>
       {items.map((item, index) => (
@@ -37,8 +41,23 @@ export function CustomTabBar({navigation, items}: CustomTabBarProps) {
               underlayColor="transparent"
               onPress={() => navigation.navigate(item.route)}>
               <>
-                <TabImage source={item.icon} />
-                <Text style={{color: '#333'}}>{item.text}</Text>
+                {item.text === 'Início' ? (
+                  <IconHome
+                    name="home"
+                    size={25}
+                    color={state.index === item.index ? '#000' : '#777'}
+                  />
+                ) : (
+                  <IconList
+                    name="list"
+                    size={25}
+                    color={state.index === item.index ? '#000' : '#777'}
+                  />
+                )}
+                <Text
+                  style={{color: state.index === item.index ? '#000' : '#777'}}>
+                  {item.text}
+                </Text>
               </>
             </TabBarRegular>
           ) : (

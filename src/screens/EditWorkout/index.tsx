@@ -195,7 +195,8 @@ export default function EditWorkout() {
     <Container>
       <CustomModal
         isVisible={modalIsOpen}
-        onClose={() => setModalIsOpen(false)}>
+        onClose={() => setModalIsOpen(false)}
+        title={isEdit ? 'Editar' : 'Criar'}>
         <ModalLabel>Músculo de foco</ModalLabel>
         <ModalMuscles horizontal={true} showsHorizontalScrollIndicator={false}>
           {renderMuscle()}
