@@ -10,6 +10,7 @@ export const Label = styled.Text`
   font-weight: bold;
   margin-top: 20px;
   margin-bottom: 10px;
+  color: #000;
 `;
 
 export const Input = styled.TextInput`
@@ -19,6 +20,7 @@ export const Input = styled.TextInput`
   border-radius: 10px;
   font-size: 16px;
   padding: 10px;
+  color: #000;
 `;
 
 export const ListArea = styled.View`
@@ -35,7 +37,9 @@ export const DayItem = styled.TouchableHighlight`
   align-items: center;
 `;
 
-export const DayText = styled.Text``;
+export const DayText = styled.Text`
+  color: #000;
+`;
 
 export const LevelItem = styled.TouchableHighlight`
   padding: 0 15px;
@@ -46,7 +50,9 @@ export const LevelItem = styled.TouchableHighlight`
   align-items: center;
 `;
 
-export const LevelText = styled.Text``;
+export const LevelText = styled.Text`
+  color: #000;
+`;
 
 export const ResetButton = styled.TouchableHighlight`
   background-color: transparent;

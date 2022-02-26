@@ -13,4 +13,6 @@ export const WorkoutList = styled.FlatList`
 
 export const Title = styled.Text`
   margin-bottom: 10px;
+  color: #000;
+  align-self: flex-start;
 `;

@@ -57,6 +57,7 @@ export function MyWorkouts() {
             item={item}
             editAction={handleEditWorkout}
             removeAction={handleRemoveWorkout}
+            index={index + 1}
           />
         )}
         keyExtractor={(item: any, index: number) => String(index)}

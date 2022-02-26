@@ -16,6 +16,7 @@ export const NameInput = styled.TextInput`
   border-radius: 10px;
   font-size: 16px;
   padding: 10px;
+  color: #000;
 `;
 
 export const SaveButtonArea = styled.TouchableHighlight`
@@ -52,6 +53,7 @@ export const ModalLabel = styled.Text`
   font-size: 15px;
   font-weight: bold;
   margin-top: 10px;
+  color: #000;
 `;
 
 export const ModalMuscles = styled.ScrollView``;

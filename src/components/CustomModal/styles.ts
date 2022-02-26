@@ -20,6 +20,7 @@ export const ModalClose = styled.TouchableHighlight`
 
 export const CloseText = styled.Text`
   font-size: 25px;
+  color: #000;
 `;
 
 export const ModalBody = styled.View``;

@@ -20,6 +20,7 @@ interface WorkoutPropsComponent {
   editAction?: (item: WorkoutProps) => void;
   removeAction?: (item: WorkoutProps) => void;
   goAction?: () => void;
+  index?: number;
 }
 
 export function Workout({
@@ -28,6 +29,7 @@ export function Workout({
   editAction,
   removeAction,
   goAction,
+  index,
 }: WorkoutPropsComponent) {
   //@ts-ignore
   const {myWorkouts} = useSelector(state => state.user);
@@ -68,7 +70,7 @@ export function Workout({
   }
 
   return (
-    <WorkoutContainer>
+    <WorkoutContainer style={{marginTop: index && index === 1 ? 20 : 0}}>
       <WorkoutInfo>
         <WorkoutTitle>{item.name}</WorkoutTitle>
         <MuscleScroll horizontal={true}>
